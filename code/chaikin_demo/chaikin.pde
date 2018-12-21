@@ -2,6 +2,16 @@ ArrayList<PVector> chaikin_cut(PVector a, PVector b, float ratio) {
   float x, y;
   ArrayList<PVector> n = new ArrayList<PVector>();
 
+  /*
+   * Swap a and b if ratio is < 0.5. This avoids cutting
+   * across the midpoint of the line.
+   */
+  if (ratio < 0.5) {
+    PVector tmp = a;
+    a = b;
+    b = tmp;
+  }
+
   /* Find point at a given ratio going from A to B */
   x = lerp(b.x, a.x, ratio);
   y = lerp(b.y, a.y, ratio);
